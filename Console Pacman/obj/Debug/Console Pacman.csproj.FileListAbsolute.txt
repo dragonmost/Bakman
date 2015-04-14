@@ -1,0 +1,6 @@
+c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\bin\Debug\Console Pacman.exe.config
+c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\obj\Debug\Console Pacman.csprojResolveAssemblyReference.cache
+c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\bin\Debug\Console Pacman.exe
+c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\bin\Debug\Console Pacman.pdb
+c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\obj\Debug\Console Pacman.exe
+c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\obj\Debug\Console Pacman.pdb
