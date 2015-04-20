@@ -251,11 +251,20 @@ namespace Console_Pacman
                 m_iPosY--;
 
 
+            Colision(ref m_iPosX, ref m_iPosY);
+
+            //reduce PowerUP duration by a frame
+            if (m_iPowerUP > 0)
+                m_iPowerUP--;
+        }
+
+        public void Colision(ref int _iPosX, ref int _iPosY)
+        {
             //C++ snake code for portal colision (adapted)
             int iPortal;
-            if ((m_iPosX == 0 || m_iPosX == Board.GetLength(0) - 1 || m_iPosY == 0 || m_iPosY == Board.GetLength(1) - 1))
+            if ((_iPosX == 0 || _iPosX == Board.GetLength(0) - 1 || _iPosY == 0 || _iPosY == Board.GetLength(1) - 1))
             {
-                int iPortalNb = int.Parse(Board[m_iPosX, m_iPosY]);
+                int iPortalNb = int.Parse(Board[_iPosX, _iPosY]);
                 if (iPortalNb % 2 == 0)
                 {
                     for (int ii = 0; ii <= Board.GetLength(0) - 1; ii++)		//double boucle pour parcourir et afficher le labyrinthe
@@ -263,7 +272,7 @@ namespace Console_Pacman
                             if (Int32.TryParse(Board[ii, ij], out iPortal))
                                 if (iPortal == iPortalNb - 1)
                                 {
-                                    m_iPosX = ii; m_iPosY = ij;
+                                    _iPosX = ii; _iPosY = ij;
                                 }
                 }
                 else
@@ -273,14 +282,10 @@ namespace Console_Pacman
                             if (Int32.TryParse(Board[ii, ij], out iPortal))
                                 if (iPortal == iPortalNb + 1)
                                 {
-                                    m_iPosX = ii; m_iPosY = ij;
+                                    _iPosX = ii; _iPosY = ij;
                                 }
                 }
             }
-
-            //reduce PowerUP duration by a frame
-            if (m_iPowerUP > 0)
-                m_iPowerUP--;
         }
 
     }
