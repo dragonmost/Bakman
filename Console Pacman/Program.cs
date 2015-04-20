@@ -223,18 +223,30 @@ namespace Console_Pacman
                 m_iScore += 10;
             }
 
-            
-         
+
             if (m_chrDir == 'N' && (Board[m_iPosX - 1, m_iPosY] != "═") && m_iPosX != 0 &&
-                (Board[m_iPosX - 1, m_iPosY] != "╝") && (Board[m_iPosX - 1, m_iPosY] != "╚"))
-                m_iPosX--;
+                   (Board[m_iPosX - 1, m_iPosY] != "╝") && (Board[m_iPosX - 1, m_iPosY] != "╚"))
+                m_chrCurDir = m_chrDir;
             else if (m_chrDir == 'S' && (Board[m_iPosX + 1, m_iPosY] != "═") && m_iPosX != Board.GetLength(0) &&
                 (Board[m_iPosX + 1, m_iPosY] != "╗") && (Board[m_iPosX + 1, m_iPosY] != "╔") && (Board[m_iPosX + 1, m_iPosY] != "="))
-                m_iPosX++;
+                m_chrCurDir = m_chrDir;
             else if (m_chrDir == 'E' && (Board[m_iPosX, m_iPosY + 1] != "║") && m_iPosY != Board.GetLength(1) &&
                 (Board[m_iPosX, m_iPosY + 1] != "╔") && (Board[m_iPosX, m_iPosY + 1] != "╚"))
-                m_iPosY++;
+                m_chrCurDir = m_chrDir;
             else if (m_chrDir == 'W' && (Board[m_iPosX, m_iPosY - 1] != "║") && m_iPosY != 0 &&
+                (Board[m_iPosX, m_iPosY - 1] != "╝") && (Board[m_iPosX, m_iPosY - 1] != "╗"))
+                m_chrCurDir = m_chrDir;
+
+            if (m_chrCurDir == 'N' && (Board[m_iPosX - 1, m_iPosY] != "═") && m_iPosX != 0 &&
+                (Board[m_iPosX - 1, m_iPosY] != "╝") && (Board[m_iPosX - 1, m_iPosY] != "╚"))
+                m_iPosX--;
+            else if (m_chrCurDir == 'S' && (Board[m_iPosX + 1, m_iPosY] != "═") && m_iPosX != Board.GetLength(0) &&
+                (Board[m_iPosX + 1, m_iPosY] != "╗") && (Board[m_iPosX + 1, m_iPosY] != "╔") && (Board[m_iPosX + 1, m_iPosY] != "="))
+                m_iPosX++;
+            else if (m_chrCurDir == 'E' && (Board[m_iPosX, m_iPosY + 1] != "║") && m_iPosY != Board.GetLength(1) &&
+                (Board[m_iPosX, m_iPosY + 1] != "╔") && (Board[m_iPosX, m_iPosY + 1] != "╚"))
+                m_iPosY++;
+            else if (m_chrCurDir == 'W' && (Board[m_iPosX, m_iPosY - 1] != "║") && m_iPosY != 0 &&
                 (Board[m_iPosX, m_iPosY - 1] != "╝") && (Board[m_iPosX, m_iPosY - 1] != "╗"))
                 m_iPosY--;
 
