@@ -19,7 +19,7 @@ namespace Console_Pacman
 
     class CPacman
     {
-        string[,] Board;
+        static string[,] Board;
         int m_iPosX;
         int m_iPosY;
         int m_iScore;
@@ -31,6 +31,7 @@ namespace Console_Pacman
         List<CBakDot> LstBakDot = new List<CBakDot>();          //Liste de Dot
         List<CBakPower> LstBakPower = new List<CBakPower>();    //Liste de Power Dot
         CJP GhostJP;
+        CChloe GhostCL;
         //debug 
         int fps = 0;
 
@@ -67,6 +68,10 @@ namespace Console_Pacman
                 Console.WriteLine("Board incorrect");
                 Console.ReadKey();
             }
+
+            GhostJP = new CJP(14, 14);
+            GhostCL = new CChloe(15, 15);
+            //GhostJP.Start();
         }
 
         public void Start()
@@ -78,7 +83,13 @@ namespace Console_Pacman
             {
                 Afficher();
                 KeyInput();
-                Move();
+                Move(ref m_iPosX, ref m_iPosY, ref m_chrCurDir, m_chrDir);
+                Colision(ref m_iPosX, ref m_iPosY);
+                GhostJP.Start();
+                Colision(ref m_iPosX, ref m_iPosY);
+
+                if (m_iPowerUP > 0)
+                    m_iPowerUP--;
 
                 if (LstBakDot.Count() == 0 && LstBakPower.Count() == 0)
                 {
@@ -90,7 +101,7 @@ namespace Console_Pacman
                 System.Threading.Thread.Sleep(30);  //tellement la pire affaire
             }
 
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
 
@@ -115,13 +126,31 @@ namespace Console_Pacman
                         Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.Write(" " + Board[i, j]);
                     }
+                    //Display GhostJP
+                    else if(i == GhostJP.m_iPosX && j == GhostJP.m_iPosY)
+                    {
+                        if (m_iPowerUP > 0)
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        else
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("JP");
+                    }
+                    //Display GhostCL
+                    else if (i == GhostCL.m_iPosX && j == GhostCL.m_iPosY)
+                    {
+                        if (m_iPowerUP > 0)
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        else
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("CL");
+                    }
                     else if (i == m_iPosX && j == m_iPosY)
                     {
                         if (m_iPowerUP > 0)
                             Console.ForegroundColor = ConsoleColor.Magenta;
                         else
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write(" P");
+                        Console.Write("BM");
                     }
                     else if (LstBakDot.FindIndex(x => (x.m_iPosX == i) && (x.m_iPosY == j)) > -1)
                     {
@@ -154,6 +183,7 @@ namespace Console_Pacman
                 Console.WriteLine("FPS count: " + fps);
                 //U+2500
                 Console.WriteLine("☼ ● ○ ♠ ♣ ♥ ♦");
+                //Ghost directions
             }
             else
                 Console.SetWindowSize(85, 35);
@@ -198,6 +228,9 @@ namespace Console_Pacman
                         m_boDebug = !m_boDebug;
                         Console.Clear();
                         break;
+                    case ConsoleKey.Escape:
+                        m_boGameOver = true;
+                        break;
                     default:
                         break;
                 }
@@ -205,7 +238,36 @@ namespace Console_Pacman
         }
 
 
-        private void Move()
+        private void Move(ref int _iPosX, ref int _iPosY, ref char _chrCurDir, char _chrDir)
+        {
+            if (_chrDir == 'N' && (Board[_iPosX - 1, _iPosY] != "═") && _iPosX != 0 &&
+                   (Board[_iPosX - 1, _iPosY] != "╝") && (Board[_iPosX - 1, _iPosY] != "╚"))
+                _chrCurDir = _chrDir;
+            else if (_chrDir == 'S' && (Board[_iPosX + 1, _iPosY] != "═") && _iPosX != Board.GetLength(0) &&
+                (Board[_iPosX + 1, _iPosY] != "╗") && (Board[_iPosX + 1, _iPosY] != "╔") && (Board[_iPosX + 1, _iPosY] != "="))
+                _chrCurDir = _chrDir;
+            else if (_chrDir == 'E' && (Board[_iPosX, _iPosY + 1] != "║") && _iPosY != Board.GetLength(1) &&
+                (Board[_iPosX, _iPosY + 1] != "╔") && (Board[_iPosX, _iPosY + 1] != "╚"))
+                _chrCurDir = _chrDir;
+            else if (_chrDir == 'W' && (Board[_iPosX, _iPosY - 1] != "║") && _iPosY != 0 &&
+                (Board[_iPosX, _iPosY - 1] != "╝") && (Board[_iPosX, _iPosY - 1] != "╗"))
+                _chrCurDir = _chrDir;
+
+            if (_chrCurDir == 'N' && (Board[_iPosX - 1, _iPosY] != "═") && _iPosX != 0 &&
+                (Board[_iPosX - 1, _iPosY] != "╝") && (Board[_iPosX - 1, _iPosY] != "╚"))
+                _iPosX--;
+            else if (_chrCurDir == 'S' && (Board[_iPosX + 1, _iPosY] != "═") && _iPosX != Board.GetLength(0) &&
+                (Board[_iPosX + 1, _iPosY] != "╗") && (Board[_iPosX + 1, _iPosY] != "╔") && (Board[_iPosX + 1, _iPosY] != "="))
+                _iPosX++;
+            else if (_chrCurDir == 'E' && (Board[_iPosX, _iPosY + 1] != "║") && _iPosY != Board.GetLength(1) &&
+                (Board[_iPosX, _iPosY + 1] != "╔") && (Board[_iPosX, _iPosY + 1] != "╚"))
+                _iPosY++;
+            else if (_chrCurDir == 'W' && (Board[_iPosX, _iPosY - 1] != "║") && _iPosY != 0 &&
+                (Board[_iPosX, _iPosY - 1] != "╝") && (Board[_iPosX, _iPosY - 1] != "╗"))
+                _iPosY--;
+        }
+
+        private void Colision(ref int _iPosX, ref int _iPosY)
         {
             //eat a pellet
             int remIndexDot = LstBakDot.FindIndex(x => (x.m_iPosX == m_iPosX) && (x.m_iPosY == m_iPosY));
@@ -223,43 +285,6 @@ namespace Console_Pacman
                 m_iScore += 10;
             }
 
-
-            if (m_chrDir == 'N' && (Board[m_iPosX - 1, m_iPosY] != "═") && m_iPosX != 0 &&
-                   (Board[m_iPosX - 1, m_iPosY] != "╝") && (Board[m_iPosX - 1, m_iPosY] != "╚"))
-                m_chrCurDir = m_chrDir;
-            else if (m_chrDir == 'S' && (Board[m_iPosX + 1, m_iPosY] != "═") && m_iPosX != Board.GetLength(0) &&
-                (Board[m_iPosX + 1, m_iPosY] != "╗") && (Board[m_iPosX + 1, m_iPosY] != "╔") && (Board[m_iPosX + 1, m_iPosY] != "="))
-                m_chrCurDir = m_chrDir;
-            else if (m_chrDir == 'E' && (Board[m_iPosX, m_iPosY + 1] != "║") && m_iPosY != Board.GetLength(1) &&
-                (Board[m_iPosX, m_iPosY + 1] != "╔") && (Board[m_iPosX, m_iPosY + 1] != "╚"))
-                m_chrCurDir = m_chrDir;
-            else if (m_chrDir == 'W' && (Board[m_iPosX, m_iPosY - 1] != "║") && m_iPosY != 0 &&
-                (Board[m_iPosX, m_iPosY - 1] != "╝") && (Board[m_iPosX, m_iPosY - 1] != "╗"))
-                m_chrCurDir = m_chrDir;
-
-            if (m_chrCurDir == 'N' && (Board[m_iPosX - 1, m_iPosY] != "═") && m_iPosX != 0 &&
-                (Board[m_iPosX - 1, m_iPosY] != "╝") && (Board[m_iPosX - 1, m_iPosY] != "╚"))
-                m_iPosX--;
-            else if (m_chrCurDir == 'S' && (Board[m_iPosX + 1, m_iPosY] != "═") && m_iPosX != Board.GetLength(0) &&
-                (Board[m_iPosX + 1, m_iPosY] != "╗") && (Board[m_iPosX + 1, m_iPosY] != "╔") && (Board[m_iPosX + 1, m_iPosY] != "="))
-                m_iPosX++;
-            else if (m_chrCurDir == 'E' && (Board[m_iPosX, m_iPosY + 1] != "║") && m_iPosY != Board.GetLength(1) &&
-                (Board[m_iPosX, m_iPosY + 1] != "╔") && (Board[m_iPosX, m_iPosY + 1] != "╚"))
-                m_iPosY++;
-            else if (m_chrCurDir == 'W' && (Board[m_iPosX, m_iPosY - 1] != "║") && m_iPosY != 0 &&
-                (Board[m_iPosX, m_iPosY - 1] != "╝") && (Board[m_iPosX, m_iPosY - 1] != "╗"))
-                m_iPosY--;
-
-
-            Colision(ref m_iPosX, ref m_iPosY);
-
-            //reduce PowerUP duration by a frame
-            if (m_iPowerUP > 0)
-                m_iPowerUP--;
-        }
-
-        public void Colision(ref int _iPosX, ref int _iPosY)
-        {
             //C++ snake code for portal colision (adapted)
             int iPortal;
             if ((_iPosX == 0 || _iPosX == Board.GetLength(0) - 1 || _iPosY == 0 || _iPosY == Board.GetLength(1) - 1))
@@ -286,9 +311,41 @@ namespace Console_Pacman
                                 }
                 }
             }
+            //prevent double port crash
+            if (_iPosX == Board.GetLength(0)-1)
+                _iPosX--;
+            if (_iPosX == 0)
+                _iPosX++;
+            if (_iPosY == Board.GetLength(1)-1)
+                _iPosY--;
+            if (_iPosY == 0)
+                _iPosY++;
+
+            GhostColision(GhostJP.m_iPosX, GhostJP.m_iPosY);
+            GhostColision(GhostCL.m_iPosX, GhostCL.m_iPosY);
         }
 
+        private void GhostColision(int _X, int _Y)
+        {
+            if (m_iPosX == _X && m_iPosY == _Y)
+                if (m_iPowerUP > 0)
+                {
+                    if (GhostJP.m_iPosX == _X && GhostJP.m_iPosY == _Y)
+                        GhostJP.Die();
+                    m_iScore += 100;
+                }
+                else
+                    m_boGameOver = true;
+                    
+        }
+
+        static public string BoardValue(int i, int j)
+        {
+            return Board[i, j].ToString();
+        }
     }
+
+
 
     class CBakDot
     {
@@ -318,12 +375,115 @@ namespace Console_Pacman
     {
         public int m_iPosX { get; set; }
         public int m_iPosY { get; set; }
+        public int m_iDir { get; set; }
+        bool m_boChD = true;
+        bool m_boExit = false;
 
         public CJP(int _iPosX, int _iPosY)
         {
             m_iPosX = _iPosX;
             m_iPosY = _iPosY;
+            m_iDir = 0;
+        }
+
+        public void Start()
+        {
+            Move();
+        }
+
+        public void Die()
+        {
+            m_boExit = false;
+            m_iPosX = 14;
+            m_iPosY = 14;
+            m_iDir = 0;
+        }
+
+        private void ChangeDirection()
+        {
+            string strCol = CPacman.BoardValue(m_iPosX + (Translation(m_iDir, true)*2),
+                                               m_iPosY + (Translation(m_iDir, false)*2));
+
+            if (strCol == "║" || strCol == "╝" || strCol == "╗" || strCol == "╔" || strCol == "╚" || strCol == "═"
+                || (m_boExit && strCol == "="))
+            {
+                m_iDir--;
+
+                if (m_iDir == -1)
+                    m_iDir = 3;
+
+                if (m_boChD)
+                {
+                    ChangeDirection();
+                    m_boChD = !m_boChD;
+                }
+                else
+                    ChangeDirection(strCol);
+
+            }
+        }
+
+        private void ChangeDirection(string strCol)
+        {
+            if (strCol == "║" || strCol == "╝" || strCol == "╗" || strCol == "╔" || strCol == "╚" || strCol == "═" 
+                || (m_boExit && strCol == "="))
+            {
+                if (m_iDir >= 2)
+                    m_iDir -= 2;
+                else
+                    m_iDir += 2;
+
+                m_boChD = !m_boChD;
+            }
+        }
+
+        private void Move()
+        {
+            m_iPosX = m_iPosX + Translation(m_iDir, true);
+            m_iPosY = m_iPosY + Translation(m_iDir, false);
+            //Console.WriteLine(Translation(m_iDir, true));
+            //Console.WriteLine(Translation(m_iDir, false));
+            ChangeDirection();
+
+            if (m_iPosX <= 11)
+                m_boExit = true;
+        }
+
+        private int Translation(int _Dir, bool _boX)
+        {
+            if(_boX)
+            {
+                if (_Dir == 0)
+                    return -1;
+                if (_Dir == 2)
+                    return 1;
+                else 
+                    return 0;
+            }
+            else
+            {
+                if (_Dir == 1)
+                    return -1;
+                if (_Dir == 3)
+                    return 1;
+                else
+                    return 0;
+            }
+
         }
     }
-    
+    //sa prend un ghost qui fait linverse par Bakman
+    class CChloe
+    {
+        public int m_iPosX { get; set; }
+        public int m_iPosY { get; set; }
+        public char m_chrDir { get; set; }
+
+        public CChloe(int _iPosX, int _iPosY)
+        {
+            m_iPosX = _iPosX;
+            m_iPosY = _iPosY;
+            m_chrDir = 'N';
+        }
+    }
 }
