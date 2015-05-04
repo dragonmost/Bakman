@@ -486,4 +486,18 @@ namespace Console_Pacman
             m_chrDir = 'N';
         }
     }
+
+    class CBleb
+    {
+        public int m_iPosX { get; set; }
+        public int m_iPosY { get; set; }
+        public char m_chrDir { get; set; }
+
+        public CBleb(int _iPosX, int _iPosY)
+        {
+            m_iPosX = _iPosX;
+            m_iPosY = _iPosY;
+            m_chrDir = 'N';
+        }
+    }
 }
