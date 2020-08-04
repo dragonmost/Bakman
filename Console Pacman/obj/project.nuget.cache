@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Z/HVbL81CCaRTmTIAuevLn9sLWpsnobaEMDAApWvwIZP5LI3r000CBwlTVsuWWV0r6UOFUO12QK4W9DCST1Tog==",
+  "success": true,
+  "projectFilePath": "D:\\git\\Bakman\\Console Pacman\\Console Pacman.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phyyl\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
+    "C:\\Users\\phyyl\\.nuget\\packages\\vildmark.core\\0.3.3\\vildmark.core.0.3.3.nupkg.sha512"
+  ],
+  "logs": []
+}

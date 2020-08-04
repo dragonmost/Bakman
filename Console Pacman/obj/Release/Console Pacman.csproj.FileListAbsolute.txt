@@ -1,0 +1,9 @@
+D:\git\Bakman\Console Pacman\bin\Release\Console Pacman.exe.config
+D:\git\Bakman\Console Pacman\bin\Release\Console Pacman.exe
+D:\git\Bakman\Console Pacman\bin\Release\Console Pacman.pdb
+D:\git\Bakman\Console Pacman\bin\Release\Vildmark.Core.dll
+D:\git\Bakman\Console Pacman\obj\Release\Console Pacman.csprojAssemblyReference.cache
+D:\git\Bakman\Console Pacman\obj\Release\Console Pacman.csproj.CoreCompileInputs.cache
+D:\git\Bakman\Console Pacman\obj\Release\Console Pacman.csproj.CopyComplete
+D:\git\Bakman\Console Pacman\obj\Release\Console Pacman.exe
+D:\git\Bakman\Console Pacman\obj\Release\Console Pacman.pdb

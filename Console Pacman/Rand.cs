@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Console_Pacman
 {
-	class Program
+	internal static class Rand
 	{
-		static void Main(string[] args)
-		{
-			Game game = new Game();
+		private static readonly Random random = new Random();
 
-			game.Run();
-		}
+		public static int Next() => random.Next();
 	}
 }

@@ -1,0 +1,59 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\git\\Bakman\\Console Pacman\\Console Pacman.csproj": {}
+  },
+  "projects": {
+    "D:\\git\\Bakman\\Console Pacman\\Console Pacman.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\git\\Bakman\\Console Pacman\\Console Pacman.csproj",
+        "projectName": "Console Pacman",
+        "projectPath": "D:\\git\\Bakman\\Console Pacman\\Console Pacman.csproj",
+        "packagesPath": "C:\\Users\\phyyl\\.nuget\\packages\\",
+        "outputPath": "D:\\git\\Bakman\\Console Pacman\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\phyyl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://devolutions.jfrog.io/devolutions/api/nuget/nuget": {},
+          "https://nuget.devexpress.com/XyD9k9dJ3IgpLt9FlY5K78cHe6FGsv6Man4wGaD8Bsbkef4Xxl/api": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Vildmark.Core": {
+              "target": "Package",
+              "version": "[0.3.3, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

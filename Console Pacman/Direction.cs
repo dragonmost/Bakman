@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Console_Pacman
 {
-	class Program
+	[Flags]
+	public enum Direction
 	{
-		static void Main(string[] args)
-		{
-			Game game = new Game();
-
-			game.Run();
-		}
+		None = 0,
+		Right = 1,
+		Down = 2,
+		Left = 4,
+		Up = 8
 	}
 }

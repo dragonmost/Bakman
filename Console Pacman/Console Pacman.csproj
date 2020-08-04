@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Console_Pacman</RootNamespace>
     <AssemblyName>Console Pacman</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -41,11 +42,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blep.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="BoardLoader.cs" />
+    <Compile Include="CLEnemy.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Rand.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="Direction.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="JPEnemy.cs" />
+    <Compile Include="MathHelper.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="map1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Vildmark.Core">
+      <Version>0.3.3</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
