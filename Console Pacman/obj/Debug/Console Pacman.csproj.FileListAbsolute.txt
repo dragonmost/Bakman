@@ -4,3 +4,12 @@ c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacm
 c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\bin\Debug\Console Pacman.pdb
 c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\obj\Debug\Console Pacman.exe
 c:\users\baker\documents\visual studio 2013\Projects\Console Pacman\Console Pacman\obj\Debug\Console Pacman.pdb
+D:\git\Bakman\Console Pacman\bin\Debug\Console Pacman.exe.config
+D:\git\Bakman\Console Pacman\bin\Debug\Console Pacman.exe
+D:\git\Bakman\Console Pacman\bin\Debug\Console Pacman.pdb
+D:\git\Bakman\Console Pacman\obj\Debug\Console Pacman.csprojAssemblyReference.cache
+D:\git\Bakman\Console Pacman\obj\Debug\Console Pacman.csproj.CoreCompileInputs.cache
+D:\git\Bakman\Console Pacman\obj\Debug\Console Pacman.exe
+D:\git\Bakman\Console Pacman\obj\Debug\Console Pacman.pdb
+D:\git\Bakman\Console Pacman\bin\Debug\Vildmark.Core.dll
+D:\git\Bakman\Console Pacman\obj\Debug\Console Pacman.csproj.CopyComplete

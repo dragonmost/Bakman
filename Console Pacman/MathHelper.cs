@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Console_Pacman
 {
-	class Program
+	internal static class MathHelper
 	{
-		static void Main(string[] args)
+		public static int Mod(int x, int mod)
 		{
-			Game game = new Game();
-
-			game.Run();
+			return ((x % mod) + mod) % mod;
 		}
 	}
 }

@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Console_Pacman
 {
-	class Program
+	internal class JPEnemy : Enemy
 	{
-		static void Main(string[] args)
+		public JPEnemy(char name, Game game)
+			: base(name, game, ConsoleColor.Blue)
 		{
-			Game game = new Game();
-
-			game.Run();
 		}
 	}
 }
